@@ -23,7 +23,7 @@
    	<script>
 
 
-<!--Step 1: detection function-->
+<!--Step 1: detection-->
 function storageAvailable(type) {
 	try {
 		var storage = window[type],
@@ -37,7 +37,7 @@ function storageAvailable(type) {
 	}
 }
 
-<!--Step2: check avaibility-->
+<!--Step2: check and report avaibility-->
 if (storageAvailable('localStorage')) {
 	document.getElementById("demo").innerHTML = "Storage Session Available!  It's Go Time!";
 }
@@ -45,24 +45,21 @@ else {
 	alert('Zilch! No Storage Session Available');
 }
 
-<!--Step 4: Turns off the text and saves a name value pair, but user will see message again unless we do more.-->
+<!--Step 4: Turns off the text and saves a name value pair, but user will see message again without more steps.-->
 var storeChoice = function() {
     localStorage.setItem("disclaimerLocal", "dontshow");
     document.getElementById("disclaimer").innerHTML = "";
 };
 
-<!--Step 5: Need fix this. having trouble retrieving the name value pair-->
+<!--Step 5: retrieving the name value pair-->
 
 	var disclaimChoice = localStorage.getItem('disclaimerLocal');
     if (disclaimChoice === 'dontshow'){
     document.getElementById("disclaimer").innerHTML = "";
 	}
 
-<!--Step 6: clear function
-	localStorage.clear();
--->
+<!--Step 6: localStorage.clear();-->
 
-<!--localStorage.removeItem(key);-->
 	</script>
 
 </body>
