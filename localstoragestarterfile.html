@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Local Storage Testing</title>
+    <!-- Reference:
+    https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
+    -->
+</head>
+
+<body>
+    <main>
+        <h1 id="demo">Local Storage Disclaimer Example</h1>
+
+        <!--Step3: add disclaimer-->
+		<div id="disclaimer">
+			<p>This website is for funsies only.  Do not use as a legally binding in any way whatsoever.</p>
+			<button type="button" onclick="storeChoice()">Stop telling me this.</button>
+		</div>
+		<div>
+			<button type="button" onclick="clearLocal()">Clear Sorage/Bring Back Dislaimer</button>
+		</div>
+
+    </main>
+
+   	<script>
+<!--Step 1: detection-->
+function storageAvailable(type) {
+	try {
+		var storage = window[type],
+			x = '__storage_test__';
+		storage.setItem(x, x);
+		storage.removeItem(x);
+		return true;
+	}
+	catch(e) {
+		return false;
+	}
+}
+<!--Step2: check and report avaibility-->
+if (storageAvailable('localStorage')) {
+	document.getElementById("demo").innerHTML = "Storage Session Available!  It's Go Time!";
+}
+else {
+	alert('Zilch! No Local Storage Available');
+}
+<!--Step 4: Turns off the text and saves a name value pair, but user will see message again without more steps.-->
+var storeChoice = function() {
+    localStorage.setItem("disclaimerLocal", "dontshow");
+    document.getElementById("disclaimer").innerHTML = "";
+};
+<!--Step 5: retrieving the name value pair-->
+var disclaimChoice = localStorage.getItem('disclaimerLocal');
+    if (disclaimChoice === 'dontshow'){
+    document.getElementById("disclaimer").innerHTML = "";
+	}
+<!--Step 6: clear all local storage-->
+var clearLocal = function() {
+    localStorage.clear()
+};
+
+	</script>
+
+</body>
+</html>
